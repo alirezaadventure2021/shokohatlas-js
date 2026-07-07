@@ -43,7 +43,7 @@ export default function ServicesList() {
   const getImageUrl = (path) => {
     if (!path) return null;
     if (path.startsWith("http")) return path;
-    return `http://localhost:3000/${path}`;
+    return `${import.meta.env.VITE_API_BASE_URL + path}`;
   };
 
   return (
@@ -67,16 +67,26 @@ export default function ServicesList() {
           <table className="w-full">
             <thead className="bg-gray-50 border-b border-gray-200">
               <tr>
-                <th className="text-left px-6 py-3 text-xs font-medium text-gray-500 uppercase">Image</th>
-                <th className="text-left px-6 py-3 text-xs font-medium text-gray-500 uppercase">Name</th>
-                <th className="text-left px-6 py-3 text-xs font-medium text-gray-500 uppercase">Status</th>
-                <th className="text-right px-6 py-3 text-xs font-medium text-gray-500 uppercase">Actions</th>
+                <th className="text-left px-6 py-3 text-xs font-medium text-gray-500 uppercase">
+                  Image
+                </th>
+                <th className="text-left px-6 py-3 text-xs font-medium text-gray-500 uppercase">
+                  Name
+                </th>
+                <th className="text-left px-6 py-3 text-xs font-medium text-gray-500 uppercase">
+                  Status
+                </th>
+                <th className="text-right px-6 py-3 text-xs font-medium text-gray-500 uppercase">
+                  Actions
+                </th>
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-100">
               {services.length === 0 ? (
                 <tr>
-                  <td colSpan="4" className="text-center py-12 text-gray-400">No services found</td>
+                  <td colSpan="4" className="text-center py-12 text-gray-400">
+                    No services found
+                  </td>
                 </tr>
               ) : (
                 services.map((service) => (
@@ -105,7 +115,9 @@ export default function ServicesList() {
                             : "bg-gray-100 text-gray-600"
                         }`}
                       >
-                        {service.status === 1 || service.status === "active" ? "Active" : "Inactive"}
+                        {service.status === 1 || service.status === "active"
+                          ? "Active"
+                          : "Inactive"}
                       </span>
                     </td>
                     <td className="px-6 py-4">
@@ -141,8 +153,13 @@ export default function ServicesList() {
       {deleteId && (
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 px-4">
           <div className="bg-white rounded-xl p-6 max-w-sm w-full">
-            <h3 className="text-lg font-semibold text-gray-900 mb-2">Delete Service</h3>
-            <p className="text-gray-500 mb-6">Are you sure you want to delete this service? This action cannot be undone.</p>
+            <h3 className="text-lg font-semibold text-gray-900 mb-2">
+              Delete Service
+            </h3>
+            <p className="text-gray-500 mb-6">
+              Are you sure you want to delete this service? This action cannot
+              be undone.
+            </p>
             <div className="flex gap-3 justify-end">
               <button
                 onClick={() => setDeleteId(null)}

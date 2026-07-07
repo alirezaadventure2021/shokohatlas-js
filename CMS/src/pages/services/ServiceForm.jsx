@@ -52,12 +52,16 @@ export default function ServiceForm() {
           }));
           if (s.card_image) {
             setCardImagePreview(
-              s.card_image.startsWith("http") ? s.card_image : `http://localhost:3000/${s.card_image}`
+              s.card_image.startsWith("http")
+                ? s.card_image
+                : `${import.meta.env.VITE_API_BASE_URL + s.card_image}`,
             );
           }
           if (s.page_image) {
             setPageImagePreview(
-              s.page_image.startsWith("http") ? s.page_image : `http://localhost:3000/${s.page_image}`
+              s.page_image.startsWith("http")
+                ? s.page_image
+                : `${import.meta.env.VITE_API_BASE_URL + s.page_image}`,
             );
           }
         })
@@ -201,16 +205,24 @@ export default function ServiceForm() {
 
           <div className="p-6 space-y-4">
             {tabs.map((tab) => (
-              <div key={tab.id} className={activeTab === tab.id ? "" : "hidden"}>
+              <div
+                key={tab.id}
+                className={activeTab === tab.id ? "" : "hidden"}
+              >
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-1">
-                      Title ({tab.label}) {tab.id === "en" && <span className="text-red-500">*</span>}
+                      Title ({tab.label}){" "}
+                      {tab.id === "en" && (
+                        <span className="text-red-500">*</span>
+                      )}
                     </label>
                     <input
                       type="text"
                       value={form.title[tab.id]}
-                      onChange={(e) => handleLangChange("title", tab.id, e.target.value)}
+                      onChange={(e) =>
+                        handleLangChange("title", tab.id, e.target.value)
+                      }
                       onBlur={() => tab.id === "en" && markTouched("title_en")}
                       className={`w-full px-4 py-2.5 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none ${
                         touched.title_en && tab.id === "en" && errors.title_en
@@ -219,17 +231,24 @@ export default function ServiceForm() {
                       }`}
                     />
                     {touched.title_en && tab.id === "en" && errors.title_en && (
-                      <p className="mt-1 text-xs text-red-600">{errors.title_en}</p>
+                      <p className="mt-1 text-xs text-red-600">
+                        {errors.title_en}
+                      </p>
                     )}
                   </div>
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-1">
-                      Slug ({tab.label}) {tab.id === "en" && <span className="text-red-500">*</span>}
+                      Slug ({tab.label}){" "}
+                      {tab.id === "en" && (
+                        <span className="text-red-500">*</span>
+                      )}
                     </label>
                     <input
                       type="text"
                       value={form.slug[tab.id]}
-                      onChange={(e) => handleLangChange("slug", tab.id, e.target.value)}
+                      onChange={(e) =>
+                        handleLangChange("slug", tab.id, e.target.value)
+                      }
                       onBlur={() => tab.id === "en" && markTouched("slug_en")}
                       className={`w-full px-4 py-2.5 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none ${
                         touched.slug_en && tab.id === "en" && errors.slug_en
@@ -238,52 +257,78 @@ export default function ServiceForm() {
                       }`}
                     />
                     {touched.slug_en && tab.id === "en" && errors.slug_en && (
-                      <p className="mt-1 text-xs text-red-600">{errors.slug_en}</p>
+                      <p className="mt-1 text-xs text-red-600">
+                        {errors.slug_en}
+                      </p>
                     )}
                   </div>
                 </div>
                 <div className="mt-4">
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Description ({tab.label})</label>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                    Description ({tab.label})
+                  </label>
                   <textarea
                     value={form.description[tab.id]}
-                    onChange={(e) => handleLangChange("description", tab.id, e.target.value)}
+                    onChange={(e) =>
+                      handleLangChange("description", tab.id, e.target.value)
+                    }
                     rows={3}
                     className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none resize-y"
                   />
                 </div>
                 <div className="mt-4">
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Article ({tab.label})</label>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                    Article ({tab.label})
+                  </label>
                   <RichEditor
                     value={form.article[tab.id]}
-                    onChange={(content) => handleLangChange("article", tab.id, content)}
+                    onChange={(content) =>
+                      handleLangChange("article", tab.id, content)
+                    }
                     onImageUpload={uploadImage}
                   />
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4">
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">Meta Title ({tab.label})</label>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">
+                      Meta Title ({tab.label})
+                    </label>
                     <input
                       type="text"
                       value={form.meta_title[tab.id]}
-                      onChange={(e) => handleLangChange("meta_title", tab.id, e.target.value)}
+                      onChange={(e) =>
+                        handleLangChange("meta_title", tab.id, e.target.value)
+                      }
                       className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none"
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">Meta Desc ({tab.label})</label>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">
+                      Meta Desc ({tab.label})
+                    </label>
                     <textarea
                       value={form.meta_description[tab.id]}
-                      onChange={(e) => handleLangChange("meta_description", tab.id, e.target.value)}
+                      onChange={(e) =>
+                        handleLangChange(
+                          "meta_description",
+                          tab.id,
+                          e.target.value,
+                        )
+                      }
                       rows={2}
                       className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none resize-y"
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">Canonical ({tab.label})</label>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">
+                      Canonical ({tab.label})
+                    </label>
                     <input
                       type="text"
                       value={form.canonical[tab.id]}
-                      onChange={(e) => handleLangChange("canonical", tab.id, e.target.value)}
+                      onChange={(e) =>
+                        handleLangChange("canonical", tab.id, e.target.value)
+                      }
                       className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none"
                     />
                   </div>
@@ -302,9 +347,13 @@ export default function ServiceForm() {
               onClick={() => handleChange("status", form.status === 1 ? 0 : 1)}
               className={`relative inline-flex h-6 w-11 items-center rounded-full transition ${form.status === 1 ? "bg-blue-600" : "bg-gray-300"}`}
             >
-              <span className={`inline-block h-4 w-4 transform rounded-full bg-white transition ${form.status === 1 ? "translate-x-6" : "translate-x-1"}`} />
+              <span
+                className={`inline-block h-4 w-4 transform rounded-full bg-white transition ${form.status === 1 ? "translate-x-6" : "translate-x-1"}`}
+              />
             </button>
-            <span className="text-sm text-gray-500">{form.status === 1 ? "Active" : "Inactive"}</span>
+            <span className="text-sm text-gray-500">
+              {form.status === 1 ? "Active" : "Inactive"}
+            </span>
           </div>
         </div>
 
@@ -316,13 +365,22 @@ export default function ServiceForm() {
             </h3>
             <div className="flex items-center gap-4">
               {cardImagePreview && (
-                <img src={cardImagePreview} alt="" className="w-32 h-20 rounded-lg object-cover border" />
+                <img
+                  src={cardImagePreview}
+                  alt=""
+                  className="w-32 h-20 rounded-lg object-cover border"
+                />
               )}
               <label className="cursor-pointer">
                 <span className="px-4 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition text-sm">
                   {cardImagePreview ? "Change" : "Upload"}
                 </span>
-                <input type="file" accept="image/*" onChange={handleCardImageChange} className="hidden" />
+                <input
+                  type="file"
+                  accept="image/*"
+                  onChange={handleCardImageChange}
+                  className="hidden"
+                />
               </label>
             </div>
             {errors.card_image && (
@@ -330,16 +388,27 @@ export default function ServiceForm() {
             )}
           </div>
           <div>
-            <h3 className="text-sm font-medium text-gray-700 mb-3">Page Image</h3>
+            <h3 className="text-sm font-medium text-gray-700 mb-3">
+              Page Image
+            </h3>
             <div className="flex items-center gap-4">
               {pageImagePreview && (
-                <img src={pageImagePreview} alt="" className="w-32 h-20 rounded-lg object-cover border" />
+                <img
+                  src={pageImagePreview}
+                  alt=""
+                  className="w-32 h-20 rounded-lg object-cover border"
+                />
               )}
               <label className="cursor-pointer">
                 <span className="px-4 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition text-sm">
                   {pageImagePreview ? "Change" : "Upload"}
                 </span>
-                <input type="file" accept="image/*" onChange={handlePageImageChange} className="hidden" />
+                <input
+                  type="file"
+                  accept="image/*"
+                  onChange={handlePageImageChange}
+                  className="hidden"
+                />
               </label>
             </div>
           </div>
@@ -352,7 +421,11 @@ export default function ServiceForm() {
             disabled={saving}
             className="px-6 py-2.5 bg-blue-600 text-white rounded-lg font-medium hover:bg-blue-700 transition disabled:opacity-50"
           >
-            {saving ? "Saving..." : isEdit ? "Update Service" : "Create Service"}
+            {saving
+              ? "Saving..."
+              : isEdit
+                ? "Update Service"
+                : "Create Service"}
           </button>
           <button
             type="button"

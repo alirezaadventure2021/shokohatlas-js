@@ -65,12 +65,16 @@ export default function BlogForm() {
           }));
           if (b.card_image) {
             setCardImagePreview(
-              b.card_image.startsWith("http") ? b.card_image : `http://localhost:3000/${b.card_image}`
+              b.card_image.startsWith("http")
+                ? b.card_image
+                : `${import.meta.env.VITE_API_BASE_URL + b.card_image}`,
             );
           }
           if (b.card_bg) {
             setCardBgPreview(
-              b.card_bg.startsWith("http") ? b.card_bg : `http://localhost:3000/${b.card_bg}`
+              b.card_bg.startsWith("http")
+                ? b.card_bg
+                : `${import.meta.env.VITE_API_BASE_URL + b.card_bg}`,
             );
           }
         })
@@ -161,7 +165,10 @@ export default function BlogForm() {
     if (form.card_bg) {
       if (typeof form.card_bg === "string") {
         // URL selected from library — extract relative path
-        const bgPath = form.card_bg.replace("http://localhost:3000/", "");
+        const bgPath = form.card_bg.replace(
+          import.meta.env.VITE_API_BASE_URL,
+          "",
+        );
         formData.append("card_bg_path", bgPath);
       } else {
         formData.append("card_bg", form.card_bg);
@@ -233,16 +240,24 @@ export default function BlogForm() {
 
           <div className="p-6 space-y-4">
             {tabs.map((tab) => (
-              <div key={tab.id} className={activeTab === tab.id ? "" : "hidden"}>
+              <div
+                key={tab.id}
+                className={activeTab === tab.id ? "" : "hidden"}
+              >
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-1">
-                      Title ({tab.label}) {tab.id === "en" && <span className="text-red-500">*</span>}
+                      Title ({tab.label}){" "}
+                      {tab.id === "en" && (
+                        <span className="text-red-500">*</span>
+                      )}
                     </label>
                     <input
                       type="text"
                       value={form.title[tab.id]}
-                      onChange={(e) => handleLangChange("title", tab.id, e.target.value)}
+                      onChange={(e) =>
+                        handleLangChange("title", tab.id, e.target.value)
+                      }
                       onBlur={() => tab.id === "en" && markTouched("title_en")}
                       className={`w-full px-4 py-2.5 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none ${
                         touched.title_en && tab.id === "en" && errors.title_en
@@ -251,17 +266,24 @@ export default function BlogForm() {
                       }`}
                     />
                     {touched.title_en && tab.id === "en" && errors.title_en && (
-                      <p className="mt-1 text-xs text-red-600">{errors.title_en}</p>
+                      <p className="mt-1 text-xs text-red-600">
+                        {errors.title_en}
+                      </p>
                     )}
                   </div>
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-1">
-                      Slug ({tab.label}) {tab.id === "en" && <span className="text-red-500">*</span>}
+                      Slug ({tab.label}){" "}
+                      {tab.id === "en" && (
+                        <span className="text-red-500">*</span>
+                      )}
                     </label>
                     <input
                       type="text"
                       value={form.slug[tab.id]}
-                      onChange={(e) => handleLangChange("slug", tab.id, e.target.value)}
+                      onChange={(e) =>
+                        handleLangChange("slug", tab.id, e.target.value)
+                      }
                       onBlur={() => tab.id === "en" && markTouched("slug_en")}
                       className={`w-full px-4 py-2.5 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none ${
                         touched.slug_en && tab.id === "en" && errors.slug_en
@@ -270,62 +292,96 @@ export default function BlogForm() {
                       }`}
                     />
                     {touched.slug_en && tab.id === "en" && errors.slug_en && (
-                      <p className="mt-1 text-xs text-red-600">{errors.slug_en}</p>
+                      <p className="mt-1 text-xs text-red-600">
+                        {errors.slug_en}
+                      </p>
                     )}
                   </div>
                 </div>
                 <div className="mt-4">
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Description ({tab.label})</label>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                    Description ({tab.label})
+                  </label>
                   <textarea
                     value={form.description[tab.id]}
-                    onChange={(e) => handleLangChange("description", tab.id, e.target.value)}
+                    onChange={(e) =>
+                      handleLangChange("description", tab.id, e.target.value)
+                    }
                     rows={3}
                     className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none resize-y"
                   />
                 </div>
                 <div className="mt-4">
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Article ({tab.label})</label>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                    Article ({tab.label})
+                  </label>
                   <RichEditor
                     value={form.article[tab.id]}
-                    onChange={(content) => handleLangChange("article", tab.id, content)}
+                    onChange={(content) =>
+                      handleLangChange("article", tab.id, content)
+                    }
                     onImageUpload={uploadImage}
                   />
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4">
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">Meta Title ({tab.label})</label>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">
+                      Meta Title ({tab.label})
+                    </label>
                     <input
                       type="text"
                       value={form.meta_title[tab.id]}
-                      onChange={(e) => handleLangChange("meta_title", tab.id, e.target.value)}
+                      onChange={(e) =>
+                        handleLangChange("meta_title", tab.id, e.target.value)
+                      }
                       className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none"
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">Meta Desc ({tab.label})</label>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">
+                      Meta Desc ({tab.label})
+                    </label>
                     <textarea
                       value={form.meta_description[tab.id]}
-                      onChange={(e) => handleLangChange("meta_description", tab.id, e.target.value)}
+                      onChange={(e) =>
+                        handleLangChange(
+                          "meta_description",
+                          tab.id,
+                          e.target.value,
+                        )
+                      }
                       rows={2}
                       className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none resize-y"
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">Canonical ({tab.label})</label>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">
+                      Canonical ({tab.label})
+                    </label>
                     <input
                       type="text"
                       value={form.canonical[tab.id]}
-                      onChange={(e) => handleLangChange("canonical", tab.id, e.target.value)}
+                      onChange={(e) =>
+                        handleLangChange("canonical", tab.id, e.target.value)
+                      }
                       className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none"
                     />
                   </div>
                 </div>
                 <div className="mt-4">
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Selva Generator ({tab.label})</label>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                    Selva Generator ({tab.label})
+                  </label>
                   <input
                     type="text"
                     value={form.selva_generator[tab.id]}
-                    onChange={(e) => handleLangChange("selva_generator", tab.id, e.target.value)}
+                    onChange={(e) =>
+                      handleLangChange(
+                        "selva_generator",
+                        tab.id,
+                        e.target.value,
+                      )
+                    }
                     className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none"
                   />
                 </div>
@@ -343,12 +399,18 @@ export default function BlogForm() {
               onClick={() => handleChange("status", form.status === 1 ? 0 : 1)}
               className={`relative inline-flex h-6 w-11 items-center rounded-full transition ${form.status === 1 ? "bg-blue-600" : "bg-gray-300"}`}
             >
-              <span className={`inline-block h-4 w-4 transform rounded-full bg-white transition ${form.status === 1 ? "translate-x-6" : "translate-x-1"}`} />
+              <span
+                className={`inline-block h-4 w-4 transform rounded-full bg-white transition ${form.status === 1 ? "translate-x-6" : "translate-x-1"}`}
+              />
             </button>
-            <span className="text-sm text-gray-500">{form.status === 1 ? "Active" : "Inactive"}</span>
+            <span className="text-sm text-gray-500">
+              {form.status === 1 ? "Active" : "Inactive"}
+            </span>
           </div>
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Published Date</label>
+            <label className="block text-sm font-medium text-gray-700 mb-1">
+              Published Date
+            </label>
             <input
               type="date"
               value={form.published_date}
@@ -366,13 +428,22 @@ export default function BlogForm() {
             </h3>
             <div className="flex items-center gap-4">
               {cardImagePreview && (
-                <img src={cardImagePreview} alt="" className="w-32 h-20 rounded-lg object-cover border" />
+                <img
+                  src={cardImagePreview}
+                  alt=""
+                  className="w-32 h-20 rounded-lg object-cover border"
+                />
               )}
               <label className="cursor-pointer">
                 <span className="px-4 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition text-sm">
                   {cardImagePreview ? "Change" : "Upload"}
                 </span>
-                <input type="file" accept="image/*" onChange={handleCardImageChange} className="hidden" />
+                <input
+                  type="file"
+                  accept="image/*"
+                  onChange={handleCardImageChange}
+                  className="hidden"
+                />
               </label>
             </div>
             {errors.card_image && (
@@ -380,11 +451,17 @@ export default function BlogForm() {
             )}
           </div>
           <div>
-            <h3 className="text-sm font-medium text-gray-700 mb-3">Card Background</h3>
+            <h3 className="text-sm font-medium text-gray-700 mb-3">
+              Card Background
+            </h3>
             <div className="flex items-center gap-4">
               {cardBgPreview && (
                 <div className="relative">
-                  <img src={cardBgPreview} alt="" className="w-32 h-20 rounded-lg object-cover border" />
+                  <img
+                    src={cardBgPreview}
+                    alt=""
+                    className="w-32 h-20 rounded-lg object-cover border"
+                  />
                   <button
                     type="button"
                     onClick={clearCardBg}
@@ -399,7 +476,12 @@ export default function BlogForm() {
                   <span className="px-4 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition text-sm">
                     {cardBgPreview ? "Change" : "Upload"}
                   </span>
-                  <input type="file" accept="image/*" onChange={handleCardBgChange} className="hidden" />
+                  <input
+                    type="file"
+                    accept="image/*"
+                    onChange={handleCardBgChange}
+                    className="hidden"
+                  />
                 </label>
                 <button
                   type="button"
@@ -413,7 +495,9 @@ export default function BlogForm() {
             {showBgPicker && (
               <div className="mt-4 border border-gray-200 rounded-lg p-4 bg-gray-50">
                 <div className="flex items-center justify-between mb-3">
-                  <h4 className="text-sm font-medium text-gray-700">Background Images</h4>
+                  <h4 className="text-sm font-medium text-gray-700">
+                    Background Images
+                  </h4>
                   <button
                     type="button"
                     onClick={() => setShowBgPicker(false)}
@@ -423,7 +507,9 @@ export default function BlogForm() {
                   </button>
                 </div>
                 {bgImages.length === 0 ? (
-                  <p className="text-sm text-gray-500">No background images found in uploads/blogs/bg/</p>
+                  <p className="text-sm text-gray-500">
+                    No background images found in uploads/blogs/bg/
+                  </p>
                 ) : (
                   <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-3">
                     {bgImages.map((img) => (
@@ -432,10 +518,16 @@ export default function BlogForm() {
                         type="button"
                         onClick={() => selectBgImage(img.url)}
                         className={`relative rounded-lg overflow-hidden border-2 transition hover:border-blue-500 ${
-                          cardBgPreview === img.url ? "border-blue-500 ring-2 ring-blue-200" : "border-transparent"
+                          cardBgPreview === img.url
+                            ? "border-blue-500 ring-2 ring-blue-200"
+                            : "border-transparent"
                         }`}
                       >
-                        <img src={img.url} alt={img.name} className="w-full h-20 object-cover" />
+                        <img
+                          src={img.url}
+                          alt={img.name}
+                          className="w-full h-20 object-cover"
+                        />
                         <div className="absolute bottom-0 inset-x-0 bg-black/50 text-white text-xs px-1 py-0.5 truncate">
                           {img.name}
                         </div>

@@ -32,7 +32,12 @@ export default function ProductForm() {
 
   const [photoPreview, setPhotoPreview] = useState(null);
   const [galleryPreviews, setGalleryPreviews] = useState([]);
-  const [confirmModal, setConfirmModal] = useState({ open: false, title: "", message: "", onConfirm: null });
+  const [confirmModal, setConfirmModal] = useState({
+    open: false,
+    title: "",
+    message: "",
+    onConfirm: null,
+  });
   const [touched, setTouched] = useState({});
 
   const validate = () => {
@@ -69,7 +74,7 @@ export default function ProductForm() {
             setPhotoPreview(
               p.photo.startsWith("http")
                 ? p.photo
-                : `http://localhost:3000/${p.photo}`,
+                : `${import.meta.env.VITE_API_BASE_URL + p.photo}`,
             );
           }
           if (p.images && p.images.length) {
@@ -83,7 +88,7 @@ export default function ProductForm() {
                   g.path
                     ? g.path.startsWith("http")
                       ? g.path
-                      : `http://localhost:3000/${g.path}`
+                      : `${import.meta.env.VITE_API_BASE_URL + g.path}`
                     : null,
                 )
                 .filter(Boolean),
@@ -158,10 +163,16 @@ export default function ProductForm() {
     const toIndex = fromIndex + direction;
     if (toIndex < 0 || toIndex >= form.gallery.length) return;
     const newGallery = [...form.gallery];
-    [newGallery[fromIndex], newGallery[toIndex]] = [newGallery[toIndex], newGallery[fromIndex]];
+    [newGallery[fromIndex], newGallery[toIndex]] = [
+      newGallery[toIndex],
+      newGallery[fromIndex],
+    ];
     handleChange("gallery", newGallery);
     const newPreviews = [...galleryPreviews];
-    [newPreviews[fromIndex], newPreviews[toIndex]] = [newPreviews[toIndex], newPreviews[fromIndex]];
+    [newPreviews[fromIndex], newPreviews[toIndex]] = [
+      newPreviews[toIndex],
+      newPreviews[fromIndex],
+    ];
     setGalleryPreviews(newPreviews);
   };
 
@@ -278,7 +289,10 @@ export default function ProductForm() {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-1">
-                      Name ({tab.label}) {tab.id === "en" && <span className="text-red-500">*</span>}
+                      Name ({tab.label}){" "}
+                      {tab.id === "en" && (
+                        <span className="text-red-500">*</span>
+                      )}
                     </label>
                     <input
                       type="text"
@@ -294,12 +308,17 @@ export default function ProductForm() {
                       }`}
                     />
                     {touched.name_en && tab.id === "en" && errors.name_en && (
-                      <p className="mt-1 text-xs text-red-600">{errors.name_en}</p>
+                      <p className="mt-1 text-xs text-red-600">
+                        {errors.name_en}
+                      </p>
                     )}
                   </div>
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-1">
-                      Slug ({tab.label}) {tab.id === "en" && <span className="text-red-500">*</span>}
+                      Slug ({tab.label}){" "}
+                      {tab.id === "en" && (
+                        <span className="text-red-500">*</span>
+                      )}
                     </label>
                     <input
                       type="text"
@@ -315,7 +334,9 @@ export default function ProductForm() {
                       }`}
                     />
                     {touched.slug_en && tab.id === "en" && errors.slug_en && (
-                      <p className="mt-1 text-xs text-red-600">{errors.slug_en}</p>
+                      <p className="mt-1 text-xs text-red-600">
+                        {errors.slug_en}
+                      </p>
                     )}
                   </div>
                 </div>
@@ -338,7 +359,9 @@ export default function ProductForm() {
                   </label>
                   <RichEditor
                     value={form.article[tab.id]}
-                    onChange={(content) => handleLangChange("article", tab.id, content)}
+                    onChange={(content) =>
+                      handleLangChange("article", tab.id, content)
+                    }
                     onImageUpload={uploadImage}
                   />
                 </div>
@@ -548,17 +571,31 @@ export default function ProductForm() {
           <div className="relative bg-white rounded-2xl shadow-2xl w-full max-w-md mx-4 overflow-hidden">
             <div className="p-6 text-center">
               <div className="mx-auto w-14 h-14 rounded-full bg-red-100 flex items-center justify-center mb-4">
-                <svg className="w-7 h-7 text-red-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                <svg
+                  className="w-7 h-7 text-red-600"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  strokeWidth={2}
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
+                  />
                 </svg>
               </div>
-              <h3 className="text-lg font-semibold text-gray-900 mb-2">{confirmModal.title}</h3>
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                {confirmModal.title}
+              </h3>
               <p className="text-sm text-gray-500">{confirmModal.message}</p>
             </div>
             <div className="flex border-t border-gray-200">
               <button
                 type="button"
-                onClick={() => setConfirmModal({ ...confirmModal, open: false })}
+                onClick={() =>
+                  setConfirmModal({ ...confirmModal, open: false })
+                }
                 className="flex-1 px-4 py-3 text-sm font-medium text-gray-700 hover:bg-gray-50 transition"
               >
                 Cancel
@@ -567,7 +604,12 @@ export default function ProductForm() {
                 type="button"
                 onClick={() => {
                   confirmModal.onConfirm();
-                  setConfirmModal({ open: false, title: "", message: "", onConfirm: null });
+                  setConfirmModal({
+                    open: false,
+                    title: "",
+                    message: "",
+                    onConfirm: null,
+                  });
                 }}
                 className="flex-1 px-4 py-3 text-sm font-medium text-white bg-red-600 hover:bg-red-700 transition border-l border-gray-200"
               >
