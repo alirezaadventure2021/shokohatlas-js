@@ -1,0 +1,287 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap");
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: "YekanBakh-Heavy";
+  src: url(./assets/font/YekanBakh-Bold/YekanBakh-Bold.eot);
+  src: url(./assets/font/OpenSans-Bold.woff2) format("woff2"),
+    url(./assets/font/YekanBakh-Bold/YekanBakh-Bold.woff) format("woff"),
+    url(./assets/font/YekanBakh-Bold/YekanBakh-Bold.ttf) format("truetype"),
+    url(./assets/font/YekanBakh-Bold/YekanBakh-Bold.svg) format("svg");
+}
+
+@font-face {
+  font-family: "YekanBakh-Heavy-light";
+  font-weight: 200;
+  src: url(./assets/font/YekanBakh-Light/YekanBakh-Light.eot);
+  src: url(./assets/font/YekanBakh-Light/YekanBakh-Light.woff2) format("woff2"),
+    url(./assets/font/YekanBakh-Light/YekanBakh-Light.woff2) format("woff"),
+    url(./assets/font/YekanBakh-Light/YekanBakh-Light.ttf) format("truetype"),
+    url(./assets/font/YekanBakh-Light/YekanBakh-Light.svg) format("svg");
+}
+
+:root {
+  --black-gradient: linear-gradient(
+    144.39deg,
+    #ffffff -278.56%,
+    #6d6d6d -78.47%,
+    #11101d 91.61%
+  );
+  --card-shadow: 0px 20px 100px -10px rgba(66, 71, 91, 0.1);
+}
+
+* {
+  scroll-behavior: smooth;
+}
+
+.text-gradient {
+  background: radial-gradient(
+    64.18% 64.18% at 71.16% 35.69%,
+    #d9e5f8 0.89%,
+    #81acee 17.23%,
+    #679be9 42.04%,
+    #5483c9 55.12%,
+    #5381c5 71.54%,
+    #255eb3 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-fill-color: transparent;
+}
+
+.logo-gradient {
+  background: radial-gradient(
+    64.18% 64.18% at 71.16% 35.69%,
+    #d9e9ff 0.89%,
+    #a5c8ff 17.23%,
+    #6ea6f5 42.04%,
+    #5483c9 55.12%,
+    #3d7fd9 71.54%,
+    #255eb3 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.bg-orange-gradient {
+  background: linear-gradient(
+    157.81deg,
+    #faf2de -43.27%,
+    #f5e6be -21.24%,
+    #f0da9d 12.19%,
+    #ebce7d 29.82%,
+    #e6c25c 51.94%,
+    #cf8f33 90.29%
+  );
+}
+
+.bg-blue-gradient {
+  background: linear-gradient(
+    157.81deg,
+    #def9fa -43.27%,
+    #bef3f5 -21.24%,
+    #9dedf0 12.19%,
+    #7de7eb 29.82%,
+    #5ce1e6 51.94%,
+    #33bbcf 90.29%
+  );
+}
+
+.bg-black-gradient {
+  background: linear-gradient(
+    100.39deg,
+    #ffffff 0%,
+    #f2f4f6 -18.47%,
+    #696969 120.61%
+  );
+}
+
+.bg-black-gradient-2 {
+  background: linear-gradient(
+    -168.39deg,
+    #ffffff -278.56%,
+    #6d6d6d -78.47%,
+    #11101d 91.61%
+  );
+}
+.bg-main-gradient {
+  background: linear-gradient(
+    180deg,
+    rgba(231, 132, 45, 0.1),
+    rgba(51, 115, 185, 0.2)
+  );
+}
+
+.bg-gray-gradient {
+  background: linear-gradient(
+    153.47deg,
+    rgba(255, 255, 255, 0) -341.94%,
+    #14101d 95.11%
+  );
+}
+
+.bg-discount-gradient {
+  background: linear-gradient(125.17deg, #272727 0%, #11101d 100%);
+}
+
+.box-shadow {
+  box-shadow: 0px 20px 100px -10px rgba(66, 71, 91, 0.1);
+}
+
+.sidebar {
+  -webkit-animation: slide-top 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+  animation: slide-top 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+}
+
+@-webkit-keyframes slide-top {
+  0% {
+    -webkit-transform: skew(-1);
+    opacity: 0;
+    transform: skew(-1);
+  }
+  100% {
+    -webkit-transform: skew(1);
+    opacity: 1;
+    transform: skew(1);
+  }
+}
+
+@keyframes slide-top {
+  0% {
+    -webkit-transform: skew(-1);
+    transform: skew(-1);
+    opacity: 0;
+  }
+  100% {
+    -webkit-transform: skew(1);
+    transform: skew(1);
+    opacity: 0.9;
+  }
+}
+
+.feature-card:hover {
+  background: var(--black-gradient);
+  box-shadow: var(--card-shadow);
+}
+
+.feedback-container .feedback-card:last-child {
+  margin-right: 0px;
+}
+
+.feedback-card {
+  background: transparent;
+}
+
+.feedback-card:hover {
+  background: var(--black-gradient);
+}
+
+.blue__gradient {
+  background: linear-gradient(180deg, rgba(188, 165, 255, 0) 0%, #3373b9 100%);
+  filter: blur(123px);
+}
+
+.pink__gradient {
+  background: linear-gradient(90deg, #f4c4f3 0%, #fc67fa 100%);
+  filter: blur(900px);
+}
+
+.white__gradient {
+  background: rgba(255, 255, 255, 0.6);
+  filter: blur(750px);
+}
+
+/* thumbnail animation */
+@keyframes progress {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+.thumbnails-progress {
+  animation: progress 6.5s linear forwards;
+}
+
+
+.singlePage{
+  line-height: 25px;
+}
+
+@media (min-width: 768px) {
+  .singlePage{
+    line-height: 30px;
+  }
+}
+
+.singlePage h2{
+  font-size: 18px;
+  margin-top: 10px;
+  margin-bottom: 5px;
+}
+@media (min-width: 768px) {
+  .singlePage h2{
+    font-size: 25px;
+    margin-top: 10px;
+    margin-bottom: 5px;
+  }
+}
+
+.singlePage p{
+  color: gray;
+  font-size: 13px;
+}
+@media (min-width: 768px) {
+  .singlePage p{
+    color: gray;
+    font-size: 15px;
+  }
+}
+
+.singlePage li{
+  color: gray;
+  font-size: 15px;
+}
+
+
+.singlePage ul{
+  list-style: disc;
+  padding: 0 10px;
+}
+@media (min-width: 768px) {
+  .singlePage ul{
+    list-style: disc;
+    padding: 0 20px;
+  }
+}
+
+.singlePage h3{
+  font-size: 15px;
+  margin-top: 10px;
+  margin-bottom: 5px;
+}
+@media (min-width: 768px) {
+  .singlePage h3{
+    font-size: 19px;
+    margin-top: 10px;
+    margin-bottom: 5px;
+  }
+}
+
+.singlePage img{
+  border-radius: 10px;
+}
+ @media (max-width >= 600px) {
+   .singlePage img{
+     border-radius: 10px;
+     width: 50px;
+     height: auto;
+   }
+ }

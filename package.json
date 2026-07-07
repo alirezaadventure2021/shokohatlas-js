@@ -1,0 +1,19 @@
+{
+  "name": "shokoh-atlas",
+  "private": true,
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "frontend": "npm --prefix website run dev",
+    "admin": "npm --prefix CMS run dev",
+    "backend": "npm --prefix server run dev",
+    "dev": "concurrently \"npm --prefix website run dev\" \"npm --prefix CMS run dev\" \"npm --prefix server run dev\""
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "concurrently": "^10.0.3"
+  }
+}

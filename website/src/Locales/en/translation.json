@@ -1,0 +1,144 @@
+{
+  "Logo": "Shokoh Atlas",
+  "LogoSub": "Industrial Company",
+  "SelectLanguage": "Select Your Language",
+  "NavLinks": {
+    "Products": "Products",
+    "Services": "Services",
+    "Contact": "Contact",
+    "About Us": "About Us",
+    "Blogs": "Blogs"
+  },
+
+  "Footer": {
+    "Info": "First producer of Industrial products in Afghanistan",
+    "FooterVision": "Our vision at Shokoh Atlas is to become a reliable industrial manufacturer in Afghanistan and the region",
+    "FooterItem": {
+      "Quick Links": "Quick Links",
+      "Products": "Products",
+      "Services": "Services",
+      "Contact": "Contact With Us"
+    },
+    "Phone": {
+        "code": "0093",
+        "number": "787989681",
+        "display": "0093 787989681"
+    },
+    "Copyright": "© 2022 Shokoh Atlas Industrial Company. All rights reserved."
+  },
+
+  "Index": {
+    "Carousel": {
+      "Title1": "Our <span>Specialized Services</span>",
+      "Description1": "Manufacturing and installing steam boilers, heating boilers, and construction-grade polystyrene across Afghanistan.",
+      "Button1": "Learn More",
+      "href1": "/en/services",
+
+      "Title2": "Industrial <span>Steam Boiler</span> Production",
+      "Description2": "We manufacture high-quality industrial steam boilers using modern technology and international standards.",
+
+      "Title3": "<span>Heating Boiler</span> Manufacturing",
+      "Description3": "Production and supply of high-efficiency heating boilers for industrial and construction applications.",
+
+      "Title4": "Construction <span>Polystyrene Production</span>",
+      "Description4": "We manufacture premium polystyrene insulation products for building and infrastructure projects."
+
+    },
+    "Products": {
+      "Title": "Our Products",
+      "Text": "At Shokouh Atlas, we prioritize customer satisfaction, adhering to international standards and best practices to provide products that meet the highest levels of safety, efficiency, and longevity."
+    },
+    "Services": {
+      "Title": "Services",
+      "Text": "Shokoh Atlas is a leading provider of industrial and construction services in Afghanistan, offering high-quality manufacturing, installation, and engineering solutions. Our expertise spans across steam boilers, heating systems, polystyrene and more.",
+      "Button": "See All Services"
+    },
+    "BlogTitle": "Blog",
+    "About": {
+      "Title": "About",
+      "Text": "Shokoh Atlas Industrial Company specializes in manufacturing steam boilers, heating boilers and polystyrene. We are committed to providing innovative, reliable, and high-quality solutions tailored to the industrial and construction sectors.",
+      "Button": "Learn More"
+    }
+  },
+  "ProductsPage": {
+    "title": "Products",
+    "shokoh": "Shokoh Atlas Industrial Company",
+    "paragraph1": "Shokoh Atlas Industrial Company specializes in the production of steam boilers, heating boilers and polystyrene . With a strong commitment to innovation and quality, our technology and expert to deliver efficient and reliable solutions tailored to industrial and construction sectors.",
+    "paragraph2": "Our steam boilers are designed for high-performance and durability, ensuring optimal energy efficiency for various purpose. The heating boilers provide consistent and effective heating solutions for residential, commercial, and industrial environments. Polystyrene enable sustainable and efficient processing of polystyrene, contributing to insulate the building. At Shokouh Atlas, we prioritize customer satisfaction, adhering to international standards and best practices to provide products that meet the highest levels of safety, efficiency, and longevity. We aim to contribute to the advancement of the industry with reliable solutions that support growth and sustainability."
+  },
+  "ServicesPage": {
+    "AboutIntro": "Shokoh Atlas is a leading provider of industrial and construction services in Afghanistan, offering high-quality manufacturing, installation, and engineering solutions. Our expertise spans across steam boilers, heating systems, polystyrene and more. With a commitment to excellence and innovation, we serve a wide range of sectors with reliable and efficient solutions. From initial consultation to final implementation, we ensure every project meets international standards, delivering sustainable results tailored to client needs.",
+    "title": "Our Services",
+    "more": "Learn More"
+  },
+  "BlogPage": {
+    "title": "Blog"
+  },
+  "AboutPage": {
+    "title": "About Us",
+    "shokoh": "Shokoh Atlas",
+    "industrial": "Industrial Company",
+    "headerText": "The first company in Afghanistan to manufacture industrial steam boilers and heating boilers",
+
+    "heading": "Everything You Should Know About Shokoh Atlas...",
+    "intro": "Shokoh Atlas Industrial Company is proud to be the first manufacturer of industrial steam boilers and heating boilers in Afghanistan. We are a locally established company dedicated to providing innovative, efficient, and reliable solutions for the industrial and construction sectors.",
+    "specialties": "We specialize in the production of:",
+    "services": {
+      "steamBoilers": "Steam Boilers – High-performance systems designed for durability and optimal energy efficiency.",
+      "heatingBoilers": "Heating Boilers – Reliable heating solutions for residential, commercial, and industrial use.",
+      "polystyrene": "Polystyrene Insulation – Eco-friendly thermal insulation that enhances energy efficiency in buildings."
+
+    },
+    "approach": "At Shokoh Atlas, we combine advanced technology with expert craftsmanship to deliver quality products that meet international standards. Customer satisfaction, safety, and sustainability are the cornerstones of our work.",
+    "visionTitle": "Our Vision",
+    "vision": "Our vision is to become a trusted industrial leader in Afghanistan and the region, known for excellence in the production of steam boilers and other industrial solutions. We aim to: Set high standards in steam and heating technology. Promote energy efficiency and environmental responsibility. Support modern infrastructure through reliable and sustainable solutions. Through ongoing innovation and strategic partnerships, we aspire to position Shokoh Atlas as a forward-thinking industrial brand committed to national development.",
+    "missionTitle": "Our Mission",
+    "mission": "At Shokoh Atlas, our mission is to design and manufacture industrial equipment that meets real-world needs. We are committed to: Providing advanced steam solutions that improve efficiency and safety. Supporting Afghanistan’s infrastructure and industrial growth. Offering responsive technical support and sustainable engineering. By investing in technology, skilled professionals, and long-term customer relationships, we strive to deliver lasting value to both our clients and our community."
+  },
+  "ContactPage": {
+    "title": "Contact Us",
+    "number": "ContactNumber",
+    "numberText": "Call us with:",
+    "getInTouch": "Get In Touch",
+    "getInTouchText": "Please feel free to get in touch, if you'd like to collaborate you are just a few clicks away!",
+    "success": "Your message was successfully sent",
+    "name": "Name",
+    "nameInput": "Please Enter Your Name",
+    "email": "Email",
+    "emailInput": "Please Enter Your Email",
+    "message": "Message",
+    "messageInput": "Please Enter Your Message",
+    "button": "Send",
+    "socialLink": "Social Links",
+    "socialLinkText": "Follow Us on:",
+    "whatsapp": "Whatsapp",
+    "facebook": "FaceBook",
+    "ourAddress": "Our Address",
+    "ourAddressText": "Afghanistan, Kabul, Qalay Haidar Khan, near Rahmani Petrol Pump, Shokoh Atlas Industrial Company",
+    "routingIn": "Routing In",
+    "googleMap": "Google Map"
+  },
+
+
+  "Blogs": {
+    "readMore": "Read More",
+    "title": "Blogs",
+    "latest": "Latest Articles"
+  },
+  "SingleProductPage": {
+    "description": "Technical Description:"
+  }
+  ,
+  "metaHome":{
+    "title":"Visit Shokoh Atlas",
+    "description":"Visit Shokoh Atlas for industrial steam boilers, heating systems, and more."
+  },
+  "metaContact":{
+    "title":"Contact Us - Shokoh Atlas",
+    "description":"Get in touch with Shokoh Atlas for industrial steam boilers, heating systems, and more."
+  },
+"metaAbout":{
+  "title":"About Us - Shokoh Atlas",
+  "description":"Know more about Shokoh Atlas for industrial steam boilers, heating systems, and more."
+}
+}

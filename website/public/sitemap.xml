@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset
+        xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml"
+>
+    <!-- Homepage -->
+    <url>
+        <loc>https://shokohatlas.co/</loc>
+        <xhtml:link rel="alternate" hreflang="en" href="https://shokohatlas.co/en/" />
+        <xhtml:link rel="alternate" hreflang="fa" href="https://shokohatlas.co/fa/" />
+        <xhtml:link rel="alternate" hreflang="ru" href="https://shokohatlas.co/ru/" />
+    </url>
+
+    <!-- Example Product Page -->
+    <url>
+        <loc>https://shokohatlas.co/en/products/Industrial-Steam-Boiler</loc>
+        <xhtml:link rel="alternate" hreflang="en" href="https://shokohatlas.co/en/products/Industrial-Steam-Boiler" />
+        <xhtml:link rel="alternate" hreflang="fa" href="https://shokohatlas.co/fa/products/Industrial-Steam-Boiler" />
+        <xhtml:link rel="alternate" hreflang="ru" href="https://shokohatlas.co/ru/products/Industrial-Steam-Boiler" />
+    </url>
+
+    <!-- Add other URLs similarly -->
+    <url>
+        <loc>https://shokohatlas.co/en/products/Heating-Boiler</loc>
+        <xhtml:link rel="alternate" hreflang="en" href="https://shokohatlas.co/en/products/Heating-Boiler" />
+        <xhtml:link rel="alternate" hreflang="fa" href="https://shokohatlas.co/fa/products/Heating-Boiler" />
+        <xhtml:link rel="alternate" hreflang="ru" href="https://shokohatlas.co/ru/products/Heating-Boiler" />
+    </url>
+
+    <url>
+        <loc>https://shokohatlas.co/en/products/Construction-Polystyrene</loc>
+        <xhtml:link rel="alternate" hreflang="en" href="https://shokohatlas.co/en/products/Construction-Polystyrene" />
+        <xhtml:link rel="alternate" hreflang="fa" href="https://shokohatlas.co/fa/products/Construction-Polystyrene" />
+        <xhtml:link rel="alternate" hreflang="ru" href="https://shokohatlas.co/ru/products/Construction-Polystyrene" />
+    </url>
+</urlset>
