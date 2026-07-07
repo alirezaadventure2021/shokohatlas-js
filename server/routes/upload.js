@@ -10,7 +10,7 @@ router.post("/", authMiddleware, upload.single("image"), (req, res) => {
     return res.status(400).json({ message: "Image file is required" });
   }
 
-  const url = `${process.env.BASE_URL + req.file.filename}`;
+  const url = `${process.env.BASE_URL}uploads/editor/${req.file.filename}`;
   res.json({ url });
 });
 
