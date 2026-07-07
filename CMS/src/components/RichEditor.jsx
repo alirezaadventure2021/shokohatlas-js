@@ -85,14 +85,18 @@ export default function RichEditor({ value, onChange, onImageUpload }) {
         </ToolbarButton>
         <div className="w-px bg-gray-300 mx-1" />
         <ToolbarButton
-          onClick={() => editor.chain().focus().toggleHeading({ level: 2 }).run()}
+          onClick={() =>
+            editor.chain().focus().toggleHeading({ level: 2 }).run()
+          }
           active={editor.isActive("heading", { level: 2 })}
           title="Heading 2"
         >
           H2
         </ToolbarButton>
         <ToolbarButton
-          onClick={() => editor.chain().focus().toggleHeading({ level: 3 }).run()}
+          onClick={() =>
+            editor.chain().focus().toggleHeading({ level: 3 }).run()
+          }
           active={editor.isActive("heading", { level: 3 })}
           title="Heading 3"
         >
@@ -117,7 +121,11 @@ export default function RichEditor({ value, onChange, onImageUpload }) {
         <ToolbarButton onClick={handleImageUpload} title="Insert Image">
           Image
         </ToolbarButton>
-        <ToolbarButton onClick={addLink} active={editor.isActive("link")} title="Insert Link">
+        <ToolbarButton
+          onClick={addLink}
+          active={editor.isActive("link")}
+          title="Insert Link"
+        >
           Link
         </ToolbarButton>
         <div className="w-px bg-gray-300 mx-1" />
