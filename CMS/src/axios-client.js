@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const axiosClient = axios.create({
-  baseURL: "http://localhost:3000/api",
+  baseURL: `${import.meta.env.VITE_API_BASE_URL}api`,
 });
 
 axiosClient.interceptors.request.use((config) => {
@@ -21,7 +21,7 @@ axiosClient.interceptors.response.use(
       window.location.href = "/login";
     }
     throw error;
-  }
+  },
 );
 
 export default axiosClient;
