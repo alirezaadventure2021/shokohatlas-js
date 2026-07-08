@@ -10,6 +10,8 @@ const blogRoutes = require("./routes/blogs");
 const serviceRoutes = require("./routes/services");
 const websiteRoutes = require("./routes/website");
 const uploadRoutes = require("./routes/upload");
+const fileRoutes = require("./routes/files");
+const messageRoutes = require("./routes/messages");
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -32,6 +34,8 @@ app.use("/api/products", productRoutes);
 app.use("/api/blogs", blogRoutes);
 app.use("/api/services", serviceRoutes);
 app.use("/api/upload", uploadRoutes);
+app.use("/api/files", fileRoutes);
+app.use("/api/messages", messageRoutes);
 
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);

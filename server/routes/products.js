@@ -4,10 +4,15 @@ const path = require("path");
 const pool = require("../config/db");
 const authMiddleware = require("../middleware/auth");
 const { createUpload } = require("../utils/multer");
+const { compressFiles, resizeFiles } = require("../utils/compress");
 
 const router = express.Router();
 const SUBFOLDER = "products";
 const upload = createUpload(SUBFOLDER);
+
+// Product gallery image dimensions
+const GALLERY_WIDTH = 600;
+const GALLERY_HEIGHT = 400;
 
 function deleteFileIfExists(relativePath) {
   if (!relativePath) return;
@@ -84,6 +89,16 @@ router.post(
   upload.fields(UPLOAD_FIELDS),
   async (req, res) => {
     try {
+      // Compress main photo if over 150KB
+      if (req.files?.photo?.length > 0) {
+        await compressFiles(req.files.photo);
+      }
+
+      // Resize gallery images to 600x400
+      if (req.files?.images?.length > 0) {
+        await resizeFiles(req.files.images, GALLERY_WIDTH, GALLERY_HEIGHT);
+      }
+
       const body = req.body;
       const photo = req.files?.photo?.[0]
         ? `uploads/products/${req.files.photo[0].filename}`
@@ -194,6 +209,16 @@ router.put(
   upload.fields(UPLOAD_FIELDS),
   async (req, res) => {
     try {
+      // Compress main photo if over 150KB
+      if (req.files?.photo?.length > 0) {
+        await compressFiles(req.files.photo);
+      }
+
+      // Resize gallery images to 600x400
+      if (req.files?.images?.length > 0) {
+        await resizeFiles(req.files.images, GALLERY_WIDTH, GALLERY_HEIGHT);
+      }
+
       const [existing] = await pool.query(
         "SELECT * FROM products WHERE id = ?",
         [req.params.id],
@@ -422,6 +447,9 @@ router.post(
         return res.status(400).json({ message: "Image file is required" });
       }
 
+      // Resize gallery image to 600x400
+      await resizeFiles([req.file], GALLERY_WIDTH, GALLERY_HEIGHT);
+
       const [maxOrder] = await pool.query(
         "SELECT COALESCE(MAX(display_order), -1) + 1 AS next_order FROM product_images WHERE product_id = ?",
         [req.params.id],
@@ -456,6 +484,11 @@ router.put(
   upload.single("image"),
   async (req, res) => {
     try {
+      // Resize gallery image to 600x400
+      if (req.file) {
+        await resizeFiles([req.file], GALLERY_WIDTH, GALLERY_HEIGHT);
+      }
+
       const [existing] = await pool.query(
         "SELECT * FROM product_images WHERE id = ? AND product_id = ?",
         [req.params.imageId, req.params.id],

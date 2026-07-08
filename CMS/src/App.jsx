@@ -14,6 +14,9 @@ import ServicesList from "./pages/services/ServicesList";
 import ServiceForm from "./pages/services/ServiceForm";
 import ServiceView from "./pages/services/ServiceView";
 import Profile from "./pages/Profile";
+import FileManager from "./pages/files/FileManager";
+import MessagesList from "./pages/messages/MessagesList";
+import MessageView from "./pages/messages/MessageView";
 
 export default function App() {
   return (
@@ -37,6 +40,9 @@ export default function App() {
             <Route path="/services/:id" element={<ServiceView />} />
             <Route path="/services/:id/edit" element={<ServiceForm />} />
             <Route path="/profile" element={<Profile />} />
+            <Route path="/files" element={<FileManager />} />
+            <Route path="/messages" element={<MessagesList />} />
+            <Route path="/messages/:id" element={<MessageView />} />
           </Route>
         </Routes>
       </BrowserRouter>

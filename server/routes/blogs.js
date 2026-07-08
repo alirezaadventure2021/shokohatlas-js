@@ -4,6 +4,7 @@ const path = require("path");
 const pool = require("../config/db");
 const authMiddleware = require("../middleware/auth");
 const { createUpload } = require("../utils/multer");
+const { compressFiles } = require("../utils/compress");
 
 const router = express.Router();
 const SUBFOLDER = "blogs";
@@ -80,6 +81,15 @@ router.get("/:id", async (req, res) => {
 // POST /api/blogs — protected create
 router.post("/", authMiddleware, upload.fields(UPLOAD_FIELDS), async (req, res) => {
   try {
+    // Compress images if over 150KB
+    const allFiles = [
+      ...(req.files?.card_image || []),
+      ...(req.files?.card_bg || []),
+    ];
+    if (allFiles.length > 0) {
+      await compressFiles(allFiles);
+    }
+
     const body = req.body;
     const card_image = req.files?.card_image?.[0]
       ? `uploads/${SUBFOLDER}/${req.files.card_image[0].filename}`
@@ -119,6 +129,15 @@ router.post("/", authMiddleware, upload.fields(UPLOAD_FIELDS), async (req, res) 
 // PUT /api/blogs/:id — protected update
 router.put("/:id", authMiddleware, upload.fields(UPLOAD_FIELDS), async (req, res) => {
   try {
+    // Compress images if over 150KB
+    const allFiles = [
+      ...(req.files?.card_image || []),
+      ...(req.files?.card_bg || []),
+    ];
+    if (allFiles.length > 0) {
+      await compressFiles(allFiles);
+    }
+
     const [existing] = await pool.query("SELECT * FROM blogs WHERE id = ?", [req.params.id]);
     if (existing.length === 0) {
       return res.status(404).json({ message: "Blog not found" });

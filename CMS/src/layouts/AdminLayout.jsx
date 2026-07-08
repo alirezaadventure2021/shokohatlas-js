@@ -1,13 +1,31 @@
 import { Link, Navigate, Outlet } from "react-router-dom";
 import { useStateContext } from "../context/AuthContext";
-import { FiHome, FiBox, FiFileText, FiLayers, FiLogOut, FiMenu, FiX, FiUser } from "react-icons/fi";
+import { FiHome, FiBox, FiFileText, FiLayers, FiLogOut, FiMenu, FiX, FiUser, FiFolder, FiMail } from "react-icons/fi";
 import { useState, useRef, useEffect } from "react";
+import axiosClient from "../axios-client";
 
 export default function AdminLayout() {
   const { user, logout, token } = useStateContext();
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [unreadCount, setUnreadCount] = useState(0);
   const dropdownRef = useRef(null);
+
+  const fetchUnreadCount = () => {
+    axiosClient
+      .get("/messages/unread-count")
+      .then(({ data }) => {
+        setUnreadCount(data.count || 0);
+      })
+      .catch(() => {});
+  };
+
+  useEffect(() => {
+    fetchUnreadCount();
+    // Poll for new messages every 30 seconds
+    const interval = setInterval(fetchUnreadCount, 30000);
+    return () => clearInterval(interval);
+  }, []);
 
   useEffect(() => {
     const handleClickOutside = (e) => {
@@ -28,6 +46,8 @@ export default function AdminLayout() {
     { to: "/products", icon: FiBox, label: "Products" },
     { to: "/blogs", icon: FiFileText, label: "Blogs" },
     { to: "/services", icon: FiLayers, label: "Services" },
+    { to: "/files", icon: FiFolder, label: "Files" },
+    { to: "/messages", icon: FiMail, label: "Messages", badge: unreadCount },
   ];
 
   return (
@@ -63,6 +83,11 @@ export default function AdminLayout() {
             >
               <link.icon size={20} />
               <span>{link.label}</span>
+              {link.badge > 0 && (
+                <span className="ml-auto px-2 py-0.5 bg-red-500 text-white text-xs rounded-full">
+                  {link.badge}
+                </span>
+              )}
             </Link>
           ))}
         </nav>
@@ -79,6 +104,20 @@ export default function AdminLayout() {
             <FiMenu size={22} />
           </button>
           <div className="hidden lg:block" />
+
+          {/* Messages icon with badge */}
+          <Link
+            to="/messages"
+            className="relative p-2 text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-lg transition"
+          >
+            <FiMail size={20} />
+            {unreadCount > 0 && (
+              <span className="absolute -top-1 -right-1 px-1.5 py-0.5 bg-red-500 text-white text-xs rounded-full min-w-[18px] text-center">
+                {unreadCount > 99 ? "99+" : unreadCount}
+              </span>
+            )}
+          </Link>
+
           <div className="relative" ref={dropdownRef}>
             {user && (
               <button
